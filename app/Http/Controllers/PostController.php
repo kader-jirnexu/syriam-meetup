@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Post;
 use Illuminate\Http\Request;
+use Validator;
 
 class PostController extends Controller
 {
@@ -23,8 +25,13 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(StorePostRequest $request)
+    {        
+        // $request->validate([
+        //     'title' => 'required',
+        //     'body' => 'required',
+        // ]);
+
         return Post::create($request->input());
     }
 
