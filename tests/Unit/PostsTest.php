@@ -60,17 +60,13 @@ class PostsTest extends TestCase
     {
         $payload = [];
 
-        $header = [
-            "Accept" => "application/json"
-        ];
-
-        $response = $this->post(route('posts.store'), $payload, $header);
+        $response = $this->json('post', route('posts.store'), $payload);
 
         $response
             ->assertStatus(422)
             ->assertJsonFragment([
-                "body" => ["The body field is required."],
-                "title" => ["The title field is required."]
+                "title" => ["The title field is required."],
+                "body" => ["The body field is required."]
             ]);
     }
 }
